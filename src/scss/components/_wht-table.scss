@@ -1,0 +1,65 @@
+@use "../base/color";
+
+.wht-table-wrapper {
+  background-color: white;
+  padding: 0 1.6rem;
+  box-shadow: color.$shadow;
+  border-top-left-radius: .8rem;
+  border-top-right-radius: .8rem;
+}
+
+.wht-table {
+  width: 100%;
+
+  th td {
+
+  }
+
+  thead tr th {
+    text-align: left;
+    color: color.$grey;
+    vertical-align: middle;
+    height: 5.2rem;
+
+
+    &:first-child, &:nth-child(2) {
+      width: 40rem;
+    }
+
+    &:last-child {
+      width: 4rem;
+    }
+
+    width: 9rem;
+  }
+
+  tbody tr {
+
+    &:hover {
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), color.$hover-color;
+      cursor: pointer;
+    }
+
+    td {
+      text-align: left;
+      vertical-align: middle;
+      height: 5.5rem;
+
+      .text-wrapper{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 41.7rem;
+        max-height: inherit;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
+
+.paginator {
+  box-shadow: color.$shadow;
+  border-bottom-left-radius: .8rem;
+  border-bottom-right-radius: .8rem;
+}
+

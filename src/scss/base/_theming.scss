@@ -1,0 +1,53 @@
+@use '@angular/material' as mat;
+@use'palette';
+@use 'color';
+
+@include mat.core();
+
+$custom-typography: mat.define-typography-config(
+  $headline-1:mat.define-typography-level(2.4rem, 2.8rem, 700),
+  $headline-2:mat.define-typography-level(2.4rem, 2.8rem, 700),
+  $headline-3:mat.define-typography-level(2.4rem, 2.8rem, 700),
+  $headline-4:mat.define-typography-level(2.4rem, 2.8rem, 700),
+  $headline-5:mat.define-typography-level(2.4rem, 2.8rem, 700),
+  $headline-6:mat.define-typography-level(2.4rem, 2.8rem, 700),
+  $subtitle-1:mat.define-typography-level(1.4rem, 2rem, 400),
+  $subtitle-2:mat.define-typography-level(1.4rem, 2rem, 400),
+  $body-1: mat.define-typography-level(1.4rem, 2rem, 400),
+  $body-2: mat.define-typography-level(1.4rem, 2rem, 500),
+  $caption:mat.define-typography-level(1.2rem, 1.6rem, 400),
+  $overline:mat.define-typography-level(1.4rem, 2rem, 400),
+  $button: mat.define-typography-level(
+    $font-size: 1.4rem,
+    $line-height: 1.6rem,
+    $font-weight: 500,
+    $letter-spacing: 0.125rem,
+  ),
+);
+
+$main-theme: mat.define-light-theme((
+  color: (
+    primary: mat.define-palette(palette.$main-primary),
+    accent: mat.define-palette(palette.$main-accent),
+    warn: mat.define-palette(palette.$main-warn),
+  ),
+  typography: $custom-typography,
+));
+
+@include mat.all-component-themes($main-theme);
+@include mat.typography-hierarchy($custom-typography);
+
+.mat-caption {
+  color: color.$grey;
+}
+
+.mat-mdc-button, .mat-mdc-raised-button, .mat-mdc-outlined-button, .mat-mdc-unelevated-button {
+  border-radius: .8rem !important;
+  letter-spacing: 0.125rem;
+}
+
+.mat-mdc-outlined-button {
+  &.mat-warn {
+    border-color: inherit !important;
+  }
+}

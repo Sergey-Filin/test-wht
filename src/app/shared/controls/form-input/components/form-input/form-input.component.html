@@ -1,0 +1,22 @@
+<mat-form-field [appearance]="appearance" class="form-input">
+  <mat-label>{{label}}</mat-label>
+   <div class="form-input-wrapper">
+      <input matInput
+             #formInput
+             class="form__input"
+             [errorStateMatcher]="matcher"
+             [type]="type === 'number' ? 'text' : type"
+             [value]="value || defaultValue || ''"
+             [placeholder]="placeholder || label || ''"
+             [disabled]="disabled"
+             [readonly]="readonly"
+             [required]="required"
+             (blur)="onTouched()"
+             (keyup)="onChangeValue($event)"
+      />
+    </div>
+
+  <mat-error>
+    Please enter a valid email address
+  </mat-error>
+</mat-form-field>

@@ -1,0 +1,40 @@
+<div class="cats">
+  <div class="cats-content">
+
+    <div class="cats-content-title">
+      <h2>Cats List</h2>
+    </div>
+
+    <form class="cats-content-filters" [formGroup]="form">
+      <ng-container *ngIf="catBreeds$ | async as breeds">
+        <mat-form-field appearance="fill" class="cats-content-filters-status">
+          <mat-label>Breeds:</mat-label>
+          <mat-select formControlName="breed" disableOptionCentering>
+            <mat-option *ngFor="let breed of breeds" [value]="breed?.name">
+              {{breed?.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </form>
+
+
+    <div class="cats-content-table">
+      <app-wht-table [tableData]="catsTableDataSource$ | async">
+      </app-wht-table>
+      <ng-container *ngIf="catsTableDataSource$ | async as data">
+        <mat-paginator class="paginator"
+                       aria-label="Select page of templates"
+                       [disabled]="data?.disabledPagination"
+                       [pageSizeOptions]="pageSizeOptions"
+                       [pageSize]="data?.pagination?.per_page"
+                       [length]="data?.pagination?.total"
+                       [pageIndex]="data?.pagination?.page - 1"
+                       (page)="setTablePage($event)"
+        >
+        </mat-paginator>
+      </ng-container>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,10 @@
+@use "scss/base/theming";
+@use "scss/base/custom-reset";
+@use "scss/components/global";
+@use "scss/components/form-input";
+@use "scss/components/cats-list";
+@use "scss/components/wht-table";
+
+html, body {
+  height: 100%;
+}

@@ -1,0 +1,39 @@
+@use "../base/color" as color;
+
+.cats {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 3.2rem;
+
+  &-content {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    max-width: 114rem;
+
+    &-title {
+      display: flex;
+    }
+
+    &-filters {
+      display: flex;
+      justify-content: left;
+      padding-top: 1.6rem;
+
+      app-form-input {
+        margin-right: 1.6rem;
+        width: 25rem;
+      }
+
+      &-status {
+        width: 13rem;
+      }
+    }
+
+    &-table {
+      padding-top: .5rem;
+    }
+  }
+}
