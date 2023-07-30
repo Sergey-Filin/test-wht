@@ -1,4 +1,22 @@
+export interface CatsListI {
+  readonly name: string;
+  readonly temperament: string;
+  readonly description: string;
+  readonly image: CatImage;
+  readonly reference_image_id: string;
+  readonly id: string;
+}
+
 export class BreedCats {
+  constructor(
+    public readonly id: string,
+    public readonly breedId: string,
+    public readonly breed: string,
+  ) {
+  }
+}
+
+export class CatsTableList {
   constructor(
     public readonly name: string,
     public readonly temperament: string,
@@ -7,6 +25,33 @@ export class BreedCats {
   ) {
   }
 }
+
+export class CatsTableListData {
+  constructor(
+    public readonly catsList: CatsTableList[],
+    public readonly pagination: Pagination,
+    public readonly disabledPagination?: boolean,
+  ) {
+  }
+}
+
+export class CatsData {
+  constructor(
+    public readonly breedCats: BreedCats[],
+    public readonly catsTableList: CatsTableList[],
+  ) {
+  }
+}
+
+// export class BreedCats {
+//   constructor(
+//     public readonly name: string,
+//     public readonly temperament: string,
+//     public readonly description: string,
+//     public readonly image: CatImage,
+//   ) {
+//   }
+// }
 
 export class CatImage {
   constructor(
@@ -17,21 +62,30 @@ export class CatImage {
   }
 }
 
+export class CatsByBreed {
+  constructor(
+    public readonly name: string,
+    public readonly temperament: string,
+    public readonly description: string,
+  ) {
+  }
+}
+
 export interface BreedCatsI {
-    readonly breeds: BreedCats[];
+    readonly breeds: CatsByBreed[];
     readonly height: number;
     readonly url: string;
     readonly width: number;
 }
 
-export class CatsTableDto {
-  constructor(
-    public readonly items: BreedCats[],
-    public readonly pagination: Pagination,
-    public readonly disabledPagination?: boolean,
-  ) {
-  }
-}
+// export class CatsTableDto {
+//   constructor(
+//     public readonly items: BreedCats[],
+//     public readonly pagination: Pagination,
+//     public readonly disabledPagination?: boolean,
+//   ) {
+//   }
+// }
 
 export class Pagination {
   constructor(
@@ -54,7 +108,7 @@ export class PaginatorData {
 
 export class BreedCatsFilterDto {
   constructor(
-    public readonly name: string,
+    public readonly breed: string,
     public readonly pagination: PaginatorData,
   ) {
   }

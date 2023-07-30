@@ -2,16 +2,16 @@
   <div class="cats-content">
 
     <div class="cats-content-title">
-      <h2>Cats List</h2>
+      <h2>Cats List NGXS</h2>
     </div>
 
     <form class="cats-content-filters" [formGroup]="form">
-      <ng-container *ngIf="catBreeds$ | async as breeds">
+      <ng-container *ngIf="breedCats$ | async as breeds">
         <mat-form-field appearance="fill" class="cats-content-filters-status">
           <mat-label>Breeds:</mat-label>
           <mat-select formControlName="breed" disableOptionCentering>
             <mat-option [value]="'All'">All</mat-option>
-            <mat-option *ngFor="let breed of breeds; trackBy: trackByFn"  [value]="breed?.breedId" >
+            <mat-option *ngFor="let breed of breeds; trackBy: trackByFn" [value]="breed?.breedId" >
               {{breed?.breed}}
             </mat-option>
           </mat-select>
@@ -23,7 +23,6 @@
       <app-wht-table [tableData]="catsTableDataSource$ | async">
       </app-wht-table>
       <ng-container *ngIf="catsTableDataSource$ | async as data">
-
         <mat-paginator class="paginator"
                        aria-label="Select page of templates"
                        [pageSizeOptions]="pageSizeOptions"

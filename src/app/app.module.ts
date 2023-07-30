@@ -5,7 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { ApiInterceptor } from "./shared/interceptors";
+import { ApiInterceptor } from "@shared/interceptors";
+import { NgxsModule } from "@ngxs/store";
+import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
@@ -16,6 +19,11 @@ import { ApiInterceptor } from "./shared/interceptors";
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgxsModule.forRoot([], {
+      developmentMode: true,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    MatSidenavModule,
   ],
   providers: [
     {

@@ -1,9 +1,9 @@
 <div class="mat-elevation-z8 wht-table-wrapper">
 
-  <table class="wht-table" mat-table [dataSource]="tableData?.items">
+  <table class="wht-table" mat-table [dataSource]="tableData?.catsList">
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+    <ng-container matColumnDef="breed">
+      <th mat-header-cell *matHeaderCellDef>Breed</th>
       <td mat-cell *matCellDef="let row">
         <div class="text-wrapper">
           {{row?.name}}
@@ -36,8 +36,8 @@
           <img
             alt="Cat Image"
             [ngSrc]="row?.image?.url"
-            [width]="150"
-            [height]="100"
+            width="150"
+            height="100"
             priority
           >
         </div>

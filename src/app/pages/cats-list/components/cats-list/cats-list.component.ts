@@ -1,11 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { CatsListService } from "../../services/cats-list.service";
 import { DestroySubscription } from "@helpers/classes";
-import {
-  BreedCatsFilterDto, CatBreeds, CatsTableDto,
-  PaginatorData
-} from "@shared/models";
+import { BreedCats, BreedCatsFilterDto, CatsTableListData, PaginatorData } from "@shared/models";
 import {
   combineLatest,
   map,
@@ -24,7 +21,8 @@ import { PageEvent } from "@angular/material/paginator";
 @Component({
   selector: 'app-cats-list',
   templateUrl: './cats-list.component.html',
-  styleUrls: ['./cats-list.component.scss']
+  styleUrls: ['./cats-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CatsListComponent extends DestroySubscription implements OnInit, AfterViewInit {
 
@@ -34,8 +32,8 @@ export class CatsListComponent extends DestroySubscription implements OnInit, Af
   private readonly updateList$ = new Subject<void>();
 
   public pageSizeOptions = [10, 25, 50, 100];
-  public catsTableDataSource$: Observable<CatsTableDto>;
-  public catBreeds$: Observable<CatBreeds[]>;
+  public catsTableDataSource$: Observable<CatsTableListData>;
+  public catBreeds$: Observable<BreedCats[]>;
 
   constructor(
     private readonly fb: UntypedFormBuilder,
@@ -69,6 +67,10 @@ export class CatsListComponent extends DestroySubscription implements OnInit, Af
     });
   }
 
+  trackByFn(index: number, item: BreedCats) {
+    return item.id;
+  }
+
   public setTablePage(page: PageEvent): void {
     this.pagination$.next(new PaginatorData(page?.pageSize, page?.pageIndex));
   }
@@ -76,7 +78,6 @@ export class CatsListComponent extends DestroySubscription implements OnInit, Af
   public loadCatBreeds(): void {
     this.catBreeds$ = this.catsListService.getCatBreeds();
   }
-
 
   private formValueChanges(): Observable<any> {
     return this.form.valueChanges.pipe(
@@ -94,7 +95,7 @@ export class CatsListComponent extends DestroySubscription implements OnInit, Af
       map(([params, update]: [SearchQueryParams, void]) => {
         const breed = params?.breed;
         const page = breed ? 0 : +params?.page || 0;
-        const limit = breed ? 20 : +params?.limit || 10;
+        const limit = breed ? 29 : +params?.limit || 10;
         const paginator = new PaginatorData(limit, page);
         return new BreedCatsFilterDto(breed, paginator);
       }),

@@ -3,9 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    // canActivate: [AuthGuard],
+    path: 'cats-list',
     loadChildren: () => import('./pages/cats-list/cats-list.module').then(m => m.CatsListModule),
+  },
+  {
+    path: 'cats-list-ngxs',
+    loadChildren: () => import('./pages/cats-list-ngxs/cats-list-ngxs.module').then(m => m.CatsListNgxsModule),
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'cats-list',
   },
 ];
 

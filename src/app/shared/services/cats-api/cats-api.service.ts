@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { BreedCats, BreedCatsFilterDto, BreedCatsI, CatBreedsI, PaginatorData } from "@shared/models";
+import { BreedCats, BreedCatsFilterDto, BreedCatsI, CatBreedsI, CatsListI, PaginatorData } from "@shared/models";
 
 
 export interface CatsApiServiceI {
-  getCatsList(params: PaginatorData): Observable<BreedCats[]>,
+  getCatsList(params: PaginatorData): Observable<CatsListI[]>,
 
   getCatBreeds(): Observable<CatBreedsI[]>,
 
@@ -20,8 +20,8 @@ export class CatsApiService implements CatsApiServiceI {
   constructor(private readonly http: HttpClient) {
   }
 
-  getCatsList(params: PaginatorData): Observable<BreedCats[]> {
-    return this.http.get<BreedCats[]>(`${this.apiUrl}breeds?limit=${params?.limit}&page=${params?.page}`);
+  getCatsList(params: PaginatorData): Observable<CatsListI[]> {
+    return this.http.get<CatsListI[]>(`${this.apiUrl}breeds?limit=${params?.limit}&page=${params?.page}`);
   }
 
   getCatBreeds(): Observable<CatBreedsI[]> {
@@ -29,8 +29,8 @@ export class CatsApiService implements CatsApiServiceI {
   }
 
   getCatByBreed(params: BreedCatsFilterDto): Observable<BreedCatsI[]> {
-    const { name, pagination} = params;
+    const { breed, pagination} = params;
     const { limit, page} = pagination;
-    return this.http.get<BreedCatsI[]>(`${this.apiUrl}images/search?breed_ids=${name}&limit=${limit}&page=${page}`);
+    return this.http.get<BreedCatsI[]>(`${this.apiUrl}images/search?breed_ids=${breed}&limit=${limit}&page=${page}`);
   }
 }

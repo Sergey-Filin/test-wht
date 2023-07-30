@@ -11,8 +11,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { FormInputModule } from "@shared/controls/form-input";
 import { WhtTableModule } from "@shared/modules/wht-table";
 import { CatsListService } from "./services/cats-list.service";
-import { CatsApiService } from "../../shared/services";
-
+import { CatsApiService } from "@shared/services";
+import { CatsStateModule } from "../../store/cats-state";
 
 @NgModule({
   declarations: [
