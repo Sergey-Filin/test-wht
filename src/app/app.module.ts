@@ -9,6 +9,7 @@ import { ApiInterceptor } from "@shared/interceptors";
 import { NgxsModule } from "@ngxs/store";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { CustomLoaderModule } from "@shared/modules/custom-loader";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
   ],
   imports: [
     BrowserModule,
+    CustomLoaderModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
