@@ -23,14 +23,12 @@
       <app-wht-table [tableData]="catsTableDataSource$ | async">
       </app-wht-table>
       <ng-container *ngIf="catsTableDataSource$ | async as data">
-
         <mat-paginator class="paginator"
                        aria-label="Select page of templates"
                        [pageSizeOptions]="pageSizeOptions"
                        [pageSize]="data?.pagination?.per_page"
                        [length]="data?.pagination?.total"
-                       [pageIndex]="data?.pagination?.page - 1"
-                       [disabled]="data?.disabledPagination"
+                       [pageIndex]="data?.pagination?.page"
                        (page)="setTablePage($event)"
         >
         </mat-paginator>

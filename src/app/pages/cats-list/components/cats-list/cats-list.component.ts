@@ -12,7 +12,7 @@ import {
   startWith,
   Subject,
   switchMap,
-  takeUntil,
+  takeUntil, tap,
 } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SearchQueryParams } from "../models";
@@ -59,6 +59,13 @@ export class CatsListComponent extends DestroySubscription implements OnInit, Af
     merge(this.pagination$.asObservable(), this.formValueChanges()).pipe(
       takeUntil(this.destroyStream$)
     ).subscribe(params => {
+      // if(params?.breed) {
+      //   new PaginatorData(29, 0)
+      // }else{
+      //   params
+      //
+      //
+      // }
       this.router.navigate(['./'], {
         relativeTo: this.route,
         queryParams: params,
@@ -100,6 +107,7 @@ export class CatsListComponent extends DestroySubscription implements OnInit, Af
         return new BreedCatsFilterDto(breed, paginator);
       }),
       switchMap((params: BreedCatsFilterDto) => this.catsListService.getCatsList(params)),
+      tap(vl => console.log(vl)),
       share(),
       shareReplay(1),
     );

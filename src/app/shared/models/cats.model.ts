@@ -30,7 +30,6 @@ export class CatsTableListData {
   constructor(
     public readonly catsList: CatsTableList[],
     public readonly pagination: Pagination,
-    public readonly disabledPagination?: boolean,
   ) {
   }
 }
@@ -42,16 +41,6 @@ export class CatsData {
   ) {
   }
 }
-
-// export class BreedCats {
-//   constructor(
-//     public readonly name: string,
-//     public readonly temperament: string,
-//     public readonly description: string,
-//     public readonly image: CatImage,
-//   ) {
-//   }
-// }
 
 export class CatImage {
   constructor(
@@ -77,15 +66,6 @@ export interface BreedCatsI {
     readonly url: string;
     readonly width: number;
 }
-
-// export class CatsTableDto {
-//   constructor(
-//     public readonly items: BreedCats[],
-//     public readonly pagination: Pagination,
-//     public readonly disabledPagination?: boolean,
-//   ) {
-//   }
-// }
 
 export class Pagination {
   constructor(

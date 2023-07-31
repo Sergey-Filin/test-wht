@@ -52,7 +52,7 @@ export class CatsState implements NgxsOnInit  {
           const {name, temperament, description, image} = element;
           return new CatsTableList(name, temperament, description, image);
         })
-        const pagination =  new Pagination(10, 0, 10, 10, 100);
+        const pagination =  new Pagination(10, 0, 10, 10, 66);
         const catsTableList = new CatsTableListData(catsListData, pagination);
         ctx.setState({
           ...state,
@@ -94,8 +94,8 @@ export class CatsState implements NgxsOnInit  {
           const { name, temperament, description } = breeds[0] as CatsByBreed;
           return new CatsTableList(name, temperament, description, catImage);
         })
-        const pagination =  new Pagination(10, 0, 10, 10, 100);
-        const catsTableList =  new CatsTableListData(catsListData, pagination, true);
+        const pagination =  new Pagination(10, 0, 10, 10, catsListData?.length);
+        const catsTableList =  new CatsTableListData(catsListData, pagination);
           ctx.setState({
             ...state,
             catsTableList,

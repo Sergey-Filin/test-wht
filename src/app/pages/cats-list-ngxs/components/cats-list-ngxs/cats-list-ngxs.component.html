@@ -29,7 +29,6 @@
                        [pageSize]="data?.pagination?.per_page"
                        [length]="data?.pagination?.total"
                        [pageIndex]="data?.pagination?.page - 1"
-                       [disabled]="data?.disabledPagination"
                        (page)="setTablePage($event)"
         >
         </mat-paginator>

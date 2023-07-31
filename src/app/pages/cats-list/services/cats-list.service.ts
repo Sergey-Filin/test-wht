@@ -29,7 +29,7 @@ export class CatsListService {
           const {name, temperament, description, image, reference_image_id, id} = element;
           catsListData.push(new CatsTableList(name, temperament, description, image));
         })
-        const pagination =  new Pagination(10, 0, 10, 10, 100);
+        const pagination = new Pagination(10, 0, 0, 10, 66);
         return new CatsTableListData(catsListData, pagination);
       }),
       catchError((error: HttpErrorResponse) => EMPTY)
@@ -57,8 +57,8 @@ export class CatsListService {
           const { name, temperament, description } = breeds[0] as CatsByBreed;
           return new CatsTableList(name, temperament, description, catImage);
         })
-        const pagination =  new Pagination(10, 0, 10, 10, 100);
-        return new CatsTableListData(breedCats, pagination, true);
+        const pagination =  new Pagination(10, 0, 10, 10, breedCats?.length);
+        return new CatsTableListData(breedCats, pagination);
       }),
       catchError((error: HttpErrorResponse) => EMPTY)
     )};
