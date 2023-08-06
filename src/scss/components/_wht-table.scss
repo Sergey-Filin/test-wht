@@ -52,6 +52,12 @@
         max-width: 41.7rem;
         max-height: inherit;
         padding-right: 1rem;
+
+        &-img {
+          position: relative;
+          width: 10rem;
+          height: 10rem;
+        }
       }
     }
   }

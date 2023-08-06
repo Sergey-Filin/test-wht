@@ -107,7 +107,6 @@ export class CatsListComponent extends DestroySubscription implements OnInit, Af
         return new BreedCatsFilterDto(breed, paginator);
       }),
       switchMap((params: BreedCatsFilterDto) => this.catsListService.getCatsList(params)),
-      tap(vl => console.log(vl)),
       share(),
       shareReplay(1),
     );
